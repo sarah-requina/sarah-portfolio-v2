@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --nav-height: 72px;
+    --page-padding: clamp(1.25rem, 5vw, 4rem);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #F7F6F2;
+    color: #1A1A2E;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #C9A96E;
+    color: #1A1A2E;
+  }
+
+  :focus-visible {
+    outline: 2px solid #C9A96E;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #EDECEA;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #C9A96E;
+    border-radius: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply max-w-8xl mx-auto px-[var(--page-padding)];
+  }
+
+  .section-padding {
+    @apply py-[clamp(5rem,10vw,9rem)];
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs tracking-[0.2em] uppercase text-gold font-medium;
+  }
+
+  .display-headline {
+    @apply font-display font-light text-charcoal leading-none tracking-tight;
+  }
+
+  .body-text {
+    @apply font-body text-text-secondary leading-relaxed;
+  }
+
+  .gold-rule {
+    @apply w-12 h-[2px] bg-gold;
+  }
+
+  /* Card base */
+  .card {
+    @apply bg-white rounded-2xl shadow-card border border-parchment-dark transition-all duration-300;
+  }
+  .card:hover {
+    @apply shadow-card-hover -translate-y-0.5;
+  }
+
+  /* Tag pill */
+  .tag {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-mono tracking-wide;
+  }
+
+  /* Button base */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-charcoal text-parchment font-body font-medium text-sm
+           rounded-full transition-all duration-300 hover:bg-charcoal-mid hover:shadow-card-hover hover:-translate-y-0.5
+           focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-gold text-charcoal font-body font-semibold text-sm
+           rounded-full transition-all duration-300 hover:bg-gold-dark hover:shadow-gold hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 border border-charcoal/20 text-charcoal font-body font-medium text-sm
+           rounded-full transition-all duration-300 hover:border-gold hover:text-gold;
+  }
+
+  /* Section divider */
+  .section-divider {
+    @apply w-full h-px bg-gradient-to-r from-transparent via-charcoal/10 to-transparent;
+  }
+
+  /* Number stat */
+  .stat-number {
+    @apply font-display text-display-md font-semibold text-charcoal tabular-nums;
+  }
+
+  /* Timeline connector */
+  .timeline-line {
+    @apply absolute left-[15px] top-0 bottom-0 w-px bg-gradient-to-b from-gold/40 via-gold/20 to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  .gradient-mask-b {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+  }
+
+  /* Gold shimmer text */
+  .text-gold-shimmer {
+    background: linear-gradient(90deg, #C9A96E 0%, #E8D5A3 40%, #C9A96E 60%, #A8884A 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+}
